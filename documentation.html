@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <link rel="apple-touch-icon" sizes="57x57" href="./docs/icons/apple-touch-icon_57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./docs/icons/apple-touch-icon_60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./docs/icons/apple-touch-icon_72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./docs/icons/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./docs/icons/apple-touch-icon_114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./docs/icons/apple-touch-icon_120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./docs/icons/apple-touch-icon_144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./docs/icons/apple-touch-icon_152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./docs/icons/apple-touch-icon_180.png">
+  <link rel="icon" type="image/png" href="./docs/icons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="./docs/icons/android-chrome-192x192.png" sizes="192x192">
+  <link rel="icon" type="image/png" href="./docs/icons/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./docs/icons/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" href="./docs/icons/favicon.ico" type="image/x-icon"/>
+  <link rel="shortcut icon" href="./docs/icons/favicon.ico" type="image/x-icon"/>
+  <title>SGX Enabled Vms for Virtualbox - Documentation</title>
+  <link rel='stylesheet' type='text/css' href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css" />
+  <link rel='stylesheet' type='text/css' href="https://cdn.jsdelivr.net/foundation-icons/3.0/foundation-icons.min.css"/>
+  <style>
+
+    footer {
+      text-align:center;
+      clear: both;
+      width:100%;
+      vertical-align: middle;
+      background-color:  #D3D3D3;
+    }
+
+    .main-header {
+      text-align: center;
+      background-color: #D3D3D3;
+    }
+
+    aside h2 {
+      font-size: 15px;
+      text-align: center;
+    }
+
+    aside h1 {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    aside {
+      background-color: #fdeded;
+    }
+
+    article h2 {
+      font-weight: bolder;
+      font-size: 1.5em;
+      font-style: oblique;
+    }
+
+    article h1 {
+      font-weight: bold;
+      font-size: 2.1em;
+      text-align: center;
+    }
+
+    .fixed {
+      position:fixed;
+    }
+
+    #back-top {
+      position: fixed;
+      bottom:55px;
+      right: 5%;
+      z-index: 100;
+      font-size: 40px;
+      opacity:0.5;
+      border: 3px solid;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    article {
+      margin-bottom: 3px;
+      background-color: #fff;
+      padding: 5px;
+      margin: 9px;
+    }
+
+    body {
+      background-color: teal;
+    }
+
+    pre code {
+      display: block;
+      width:auto;
+      margin: 2px;
+      font-style: italic;
+      background-color: #000;
+      color: #00bb00;
+    }
+  </style>
+  <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function(){
+
+         // hide #back-top first
+         $("#back-top").hide();
+
+         // fade in #back-top
+         $(function () {
+           $(window).scroll(function () {
+             if ($(this).scrollTop() > 100) {
+               $('#back-top').fadeIn();
+             } else {
+               $('#back-top').fadeOut();
+             }
+           });
+
+           // scroll body to 0px on click
+           $('#back-top .fi-arrow-up').click(function () {
+             $('body,html').animate({
+               scrollTop: 0
+             }, 800);
+             return false;
+           });
+         });
+
+    });
+ </script>
+
+</head>
+<body>
+<div class="expanded row">
+  <div class="row expanded">
+  <aside class="medium-2 large-3 hide-for-small-only fixed">
+    <div class="main-header row">
+        <h1>Documentation</h1>
+    </div>
+    <div class="row">
+      <h2>Table of contents</h2>
+      <ul class="vertical menu">
+        <li><a href="#installation">Installation</a></li>
+        <li>
+          <a href="#code_share">Sharing code Between Vm and Host</a>
+          <ul class="nested vertical menu">
+            <li><a href="#code_share_install_nfs">Install NFS</a></li>
+            <li><a href="#host-only">Enable a Host Only Adapter</a></li>
+            <li><a href="#mount-folder">Enable a Host Only Adapter</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="row">
+      <h2>Extra Information</h2>
+      <ul class="vertical menu">
+        <li><a href="./win-install-nfs.html">Install nfs into MS windows</a></li>
+      </ul>
+    </div>
+  </aside>
+  <div class="small-12 medium-10 large-9 columns">
+    <article id="installation" class="row">
+      <h1>Installation:</h1>
+      <p>In order to use the virtual machines you must first have <a href="https://www.virtualbox.org/">Virtualbox</a> installed. Afterwards follow theese steps:
+        <ol>
+          <li>
+            Download the wanted Virtual Machine from the <a href="./index.html">homepage</a>
+          </li>
+          <li>
+            Launch virtualbox
+          </li>
+          <li>
+            The downloaded files are .ova ones, in order to import them go to File -> Import Appliance as the image shows:
+            <img alt="Showing how to import the downloaded Virtual machines into virtualbox" src="./docs/insert_vm.png">
+          </li>
+          <li>
+            Then select the file as the image shows bellow and press Next:
+            <img alt="Select the .ova file and inserting it into the virtualbox" src="./docs/import_vm_step_3.png">
+          </li>
+          <li>
+            Afterwards select Import as the image shows bellow:
+            <img alt="Final Step of importing the vm" src="./docs/import_vm_step_4.png">
+          </li>
+          <li>
+            Select a second network adapter and anable it.
+            <div>
+            </div>
+          </li>
+        </ol>
+      </p>
+    </article>
+    <article id="code_share" class="row">
+      <h1>Sharing code Between Vm and Host</h1>
+      <section id="code_share_install_nfs">
+        <h2>Install NFS</h2>
+          The tested method to share between host and Guest code is via NFS. In order to do that you must have first an NFS server installed to your host:
+          <ol>
+            <li>
+              For Ubuntu host follow the spteps provided in <a href="https://help.ubuntu.com/community/SettingUpNFSHowTo">here</a> and <a href="https://help.ubuntu.com/lts/serverguide/network-file-system.html">here</a>.
+            </li>
+            <li>
+              For other GNU Linux distributions use the package manager provided.
+            </li>
+            <li>
+              For MS Windows follow the steps provided in <a target="blank" href="./win-install-nfs.html">here</a>.
+            </li>
+          </ol>
+      </section>
+      <section id="host-only">
+        <h2>Enable a Host Only Adapter</h2>
+        Then you must enable over the VM a second network interface as host-only. By following theese steps:
+        <ol>
+          <li>
+            Select File -> Preferences as the image shows bellow:<br/>
+            <img src="./docs/add_host_only.png"/>
+          </li>
+          <li>
+            Then on the new window that has been opened select "Network":</br>
+            <img src="./docs/virtualbox-network.png"/>
+          </li>
+          <li id="add_network_step_3">
+            Then select the "Host-only" networks anf click on the <img src="./docs/add_network_icon.png"/> icon:<br>
+            <img src="./docs/virtualbox-network-add.png"/>
+          </li>
+          <li>
+            Click OK.
+          </li>
+          <li>Right-click on the vm you imported in <a href="#installation">Installation</a> and select Settings</li>
+          <li>
+            Then Select Network:<br>
+            <img src="./docs/select-network-vm.png"/>
+          </li>
+          <li>
+            Then enable a <strong>second</strong> network adapter and enable it. For example "Adapter <u>2</u>". The adapters are enabled by selecting the tickbox "Enable Network Adapter":
+            <img src="./docs/enable_adapter.png"/>
+          </li>
+          <li>
+            On the "Attatched To" dropdown menu select "Host Only" and on the "Name" select the network you created <a href="#add_network_step_3">here</a>:
+            <img src="./docs/select_network_host_only.png"/>
+          </li>
+          <li>Click OK</li>
+        </ol>
+      </section>
+      <section id="mount-folder">
+        <h2>Access the shared source code inside the vm:</h2>
+        In order to achieve that you must type the following commands:<br>
+        <pre><code>$: mkdir my_project<br>
+          $: sudo mount ^host^:^folder^ /home/user/my_project</code></pre>
+          Where:
+          <ul>
+            <li><strong>^host^</strong>&nbsp;:&nbsp; is the ip of the host maching of the host-only adapter.</li>
+            <li><strong>^folder^</strong>&nbsp;:&nbsp; is the folder that is mounted the nfs share.</li>
+          </ul>
+          For more permanent and ease-for-production use add into the <code>/etc/fstab</code> the following:
+          <pre><code>^host^:^folder^ /home/user/my_project    nfs    defaults 0 0</code></pre>
+          Where <strong>^host^</strong> and <strong>^folder^</strong> have the same values as above.
+      </section>
+    </article>
+  </div>
+  </div>
+</div>
+<div id="back-top"><i class="fi-arrow-up"></i></div>
+<footer>
+  <p>
+    Created By <a href="http://www.linkedin.com/in/ddesillas">Dimitrios Desyllas</a><br/>
+    <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+      <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by/4.0/80x15.png" />
+    </a>
+      The site's content is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<br>
+  </p>
+</footer>
+</body>
+</html>
