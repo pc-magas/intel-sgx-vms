@@ -15,7 +15,7 @@ In order to develop you must share the code files between guest and host first. 
 ## Install Guest Addictions (Tested wiuth virtualbox)
 
 First of all instert the Guest Addictions Iso:
-![Insert Guest Addictions](/docs/guest_addictions_insert.png)
+![Insert Guest Addictions](/img/guest_addictions_insert.png)
 
 Then type the following commands:
 
