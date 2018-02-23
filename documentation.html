@@ -191,11 +191,6 @@
             Afterwards select Import as the image shows bellow:</br>
             <img alt="Final Step of importing the vm" src="https://media.githubusercontent.com/media/pc-magas/intel-sgx-vms/master/img/import_vm_step_4.png">
           </li>
-          <li>
-            Select a second network adapter and anable it.
-            <div>
-            </div>
-          </li>
         </ol>
       </p>
     </article>
@@ -206,17 +201,7 @@
         <img src="https://media.githubusercontent.com/media/pc-magas/intel-sgx-vms/master/img/guest_addictions_insert.png" alt="Insert Guest Addictions"><br>
         </p>
         <p>Then type the following commands:
-        <pre><code>
-          # Optional only if NOT have install via repos
-          sudo apt-get purge virtualbox-guest-*
-
-          sudo mount /dev/sr0 /media/cdrom
-          cd /media/cdrom
-          sudo
-          ./VBoxLinuxAddictions.run
-
-          sudo reboot
-        </code></pre>
+        <pre><code># Optional only if NOT have install via repos<br/>$: sudo apt-get purge virtualbox-guest-*<br/><br/>$: sudo mount /dev/sr0 /media/cdrom<br/>$: cd /media/cdrom<br/>$: sudo ./VBoxLinuxAddictions.run<br/>$: sudo reboot</code></pre>
         </p>
       </section>
     </article>
@@ -262,7 +247,7 @@
             <img src="https://media.githubusercontent.com/media/pc-magas/intel-sgx-vms/master/img/select-network-vm.png"/>
           </li>
           <li>
-            Then enable a <strong>second</strong> network adapter and enable it. For example "Adapter <u>2</u>". The adapters are enabled by selecting the tickbox "Enable Network Adapter":
+            Then enable a <strong>second</strong> network adapter and enable it, for example "Adapter <u>2</u>". The adapters are enabled by selecting the tickbox "Enable Network Adapter":
             <img src="https://media.githubusercontent.com/media/pc-magas/intel-sgx-vms/master/img/enable_adapter.png"/>
           </li>
           <li>
@@ -275,8 +260,7 @@
       <section id="mount-folder">
         <h2>Access the shared source code inside the vm:</h2>
         In order to achieve that you must type the following commands:</br>
-        <pre><code>$: mkdir my_project</br>
-          $: sudo mount ^host^:^folder^ /home/user/my_project</code></pre>
+        <pre><code>$: mkdir my_project <br/>$: sudo mount ^host^:^folder^ /home/user/my_project</code></pre>
           Where:
           <ul>
             <li><strong>^host^</strong>&nbsp;:&nbsp; is the ip of the host maching of the host-only adapter.</li>
