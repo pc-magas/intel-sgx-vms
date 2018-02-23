@@ -149,10 +149,10 @@
       <h2>Table of contents</h2>
       <ul class="vertical menu">
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#guest-addictions">Install guest addictions</a></li>
         <li>
           <a href="#code_share">Sharing code Between Vm and Host</a>
           <ul class="nested vertical menu">
-            <li><a href="#guest-addictions">Install guest addictions</a></li>
             <li><a href="#code_share_install_nfs">Install NFS</a></li>
             <li><a href="#host-only">Enable a Host Only Adapter</a></li>
             <li><a href="#mount-folder">Access the shared source code inside the vm</a></li>
@@ -198,6 +198,27 @@
           </li>
         </ol>
       </p>
+    </article>
+    <article id="guest-addictions" class="row">
+      <h1>Install guest addictions</h1>
+      <section>
+        <p>First of all instert the Guest Addictions Iso:<br>
+        <img src="https://media.githubusercontent.com/media/pc-magas/intel-sgx-vms/master/img/guest_addictions_insert.png" alt="Insert Guest Addictions"><br>
+        </p>
+        <p>Then type the following commands:
+        <pre><code>
+          # Optional only if NOT have install via repos
+          sudo apt-get purge virtualbox-guest-*
+
+          sudo mount /dev/sr0 /media/cdrom
+          cd /media/cdrom
+          sudo
+          ./VBoxLinuxAddictions.run
+
+          sudo reboot
+        </code></pre>
+        </p>
+      </section>
     </article>
     <article id="code_share" class="row">
       <h1>Sharing code Between Vm and Host</h1>
@@ -264,27 +285,6 @@
           For more permanent and ease-for-production use add into the <code>/etc/fstab</code> the following:
           <pre><code>^host^:^folder^ /home/user/my_project    nfs    defaults 0 0</code></pre>
           Where <strong>^host^</strong> and <strong>^folder^</strong> have the same values as above.
-      </section>
-    </article>
-    <article class="row">
-      <h1>Install guest addictions</h1>
-      <section>
-        <p>First of all instert the Guest Addictions Iso:<br>
-        <img src="https://media.githubusercontent.com/media/pc-magas/intel-sgx-vms/master/img/guest_addictions_insert.png" alt="Insert Guest Addictions"><br>
-        </p>
-        <p>Then type the following commands:
-        <pre><code>
-          # Optional only if NOT have install via repos
-          sudo apt-get purge virtualbox-guest-*
-
-          sudo mount /dev/sr0 /media/cdrom
-          cd /media/cdrom
-          sudo
-          ./VBoxLinuxAddictions.run
-
-          sudo reboot
-        </code></pre>
-        </p>
       </section>
     </article>
   </div>
